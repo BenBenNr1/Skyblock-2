@@ -16,10 +16,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Horizontal") != 0) { rb.AddForce(transform.right * Input.GetAxis("Horizontal")); }
-        if (Input.GetAxis("Vertical") != 0) { rb.AddForce(transform.forward * Input.GetAxis("Vertical")); }
-
         RotateCam();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetAxis("Horizontal") != 0) { rb.AddForce(transform.right * Input.GetAxis("Horizontal") * speed); }
+        if (Input.GetAxis("Vertical") != 0) { rb.AddForce(transform.forward * Input.GetAxis("Vertical") * speed); }
+        if (Input.GetAxis("Vertical") == 0 && Input.GetAxis("Horizontal") == 0)
+        { rb.linearVelocity = new Vector3(rb.linearVelocity.x * 0.9f, rb.linearVelocity.y, rb.linearVelocity.z * 0.9f); }
     }
 
     private void RotateCam()
