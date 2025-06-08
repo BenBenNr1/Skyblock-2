@@ -31,10 +31,9 @@ public class PlayerMovement : MonoBehaviour
     {
         float xRot = Input.mousePositionDelta.x * Time.deltaTime;
         float yRot = Input.mousePositionDelta.y * Time.deltaTime;
+        Transform cam = Camera.main.transform;
+
         transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y + xRot * xRotSpeed, 0);
-        Camera.main.transform.rotation = Quaternion.Euler(
-            Camera.main.transform.eulerAngles.x + -yRot * yRotSpeed, 
-            Camera.main.transform.eulerAngles.y, 
-            Camera.main.transform.eulerAngles.z);
+        cam.rotation = Quaternion.Euler(cam.eulerAngles.x + -yRot * yRotSpeed,cam.eulerAngles.y,cam.eulerAngles.z);
     }
 }
